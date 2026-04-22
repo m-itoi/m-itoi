@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GitHub Activity Stats</title>
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #0d1117;
+    --panel: #161b22;
+    --border: #30363d;
+    --fg: #f0f6fc;
+    --muted: #8b949e;
+    --accent-1: #8957e5;
+    --accent-2: #1f6feb;
+    --accent-3: #2ea043;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 20px;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  h1 { font-size: 20px; margin: 0 0 4px 0; }
+  .subtitle { color: var(--muted); font-size: 13px; margin-bottom: 20px; }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  @media (max-width: 720px) { .cards { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+  }
+  .card .title { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+  .card .total { font-size: 30px; font-weight: 700; }
+  .card .sub { color: var(--muted); font-size: 12px; margin-top: 6px; }
+  .card.c1 .title { color: var(--accent-1); }
+  .card.c2 .title { color: var(--accent-2); }
+  .card.c3 .title { color: var(--accent-3); }
+  .chart-section {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  .chart-title { font-size: 14px; font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between; }
+  .chart-title .legend { color: var(--muted); font-size: 11px; font-weight: 400; }
+  .chart-wrap { position: relative; height: 220px; }
+  .controls { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+  .btn {
+    background: var(--panel);
+    color: var(--fg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .btn:hover { background: #1c2129; }
+  .btn.active { background: var(--accent-2); border-color: var(--accent-2); }
+  .footer { color: var(--muted); font-size: 11px; margin-top: 24px; text-align: center; }
+</style>
+</head>
+<body>
+
+<h1>Activity Stats</h1>
+<div class="subtitle" id="generated">Loading...</div>
+
+<div class="cards" id="cards"></div>
+
+<div class="controls">
+  <button class="btn" data-range="30">Last 30 days</button>
+  <button class="btn" data-range="90">Last 90 days</button>
+  <button class="btn" data-range="365">Last 1 year</button>
+  <button class="btn active" data-range="all">All time</button>
+</div>
+
+<div class="chart-section">
+  <div class="chart-title">
+    <span id="title-1">Closed Issues (daily)</span>
+    <span class="legend">drag to pan · wheel to zoom</span>
+  </div>
+  <div class="chart-wrap"><canvas id="chart1"></canvas></div>
+</div>
+
+<div class="chart-section">
+  <div class="chart-title">
+    <span id="title-2">Merged PRs (daily)</span>
+    <span class="legend">drag to pan · wheel to zoom</span>
+  </div>
+  <div class="chart-wrap"><canvas id="chart2"></canvas></div>
+</div>
+
+<div class="chart-section">
+  <div class="chart-title">
+    <span id="title-3">Review Submissions (daily)</span>
+    <span class="legend">drag to pan · wheel to zoom</span>
+  </div>
+  <div class="chart-wrap"><canvas id="chart3"></canvas></div>
+</div>
+
+<div class="footer">Regenerated daily by private workflow.</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.2.0/dist/chartjs-plugin-zoom.min.js"></script>
+<script>
+(async function() {
+  const res = await fetch('./data.json', { cache: 'no-store' });
+  const data = await res.json();
+
+  document.getElementById('generated').textContent =
+    'Updated ' + new Date(data.generatedAt).toLocaleString();
+
+  const metricKeys = ['closedIssues', 'mergedPrs', 'reviewSubmissions'];
+  const accents = ['#8957e5', '#1f6feb', '#2ea043'];
+
+  const cardsEl = document.getElementById('cards');
+  metricKeys.forEach((key, i) => {
+    const m = data.metrics[key];
+    const card = document.createElement('div');
+    card.className = 'card c' + (i + 1);
+    card.innerHTML =
+      '<div class="title">' + m.label + '</div>' +
+      '<div class="total">' + m.total.toLocaleString() + '</div>' +
+      '<div class="sub">30d: ' + m.month + ' · 7d: ' + m.week + '</div>';
+    cardsEl.appendChild(card);
+  });
+
+  metricKeys.forEach((key, i) => {
+    document.getElementById('title-' + (i + 1)).textContent = data.metrics[key].label + ' (daily)';
+  });
+
+  const charts = [];
+  metricKeys.forEach((key, i) => {
+    const ctx = document.getElementById('chart' + (i + 1)).getContext('2d');
+    const series = data.metrics[key].series;
+    const points = series.map(p => ({ x: p.date, y: p.value }));
+    const chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        datasets: [{
+          label: data.metrics[key].label,
+          data: points,
+          backgroundColor: accents[i],
+          borderColor: accents[i],
+          borderWidth: 0,
+          barPercentage: 1.0,
+          categoryPercentage: 1.0,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: 'nearest', intersect: false },
+        scales: {
+          x: {
+            type: 'time',
+            time: { unit: 'month', tooltipFormat: 'yyyy-MM-dd' },
+            grid: { color: '#21262d' },
+            ticks: { color: '#8b949e' },
+          },
+          y: {
+            beginAtZero: true,
+            grid: { color: '#21262d' },
+            ticks: { color: '#8b949e', precision: 0 },
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { title: (items) => items[0].raw.x } },
+          zoom: {
+            pan: { enabled: true, mode: 'x' },
+            zoom: {
+              wheel: { enabled: true },
+              pinch: { enabled: true },
+              mode: 'x',
+            }
+          }
+        }
+      }
+    });
+    charts.push(chart);
+  });
+
+  function applyRange(rangeDays) {
+    charts.forEach(c => {
+      if (rangeDays === 'all') {
+        c.resetZoom();
+      } else {
+        const end = new Date();
+        const start = new Date(end.getTime() - rangeDays * 86400000);
+        c.zoomScale('x', { min: start.valueOf(), max: end.valueOf() });
+      }
+    });
+  }
+
+  document.querySelectorAll('.btn[data-range]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.btn[data-range]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyRange(btn.dataset.range === 'all' ? 'all' : parseInt(btn.dataset.range, 10));
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

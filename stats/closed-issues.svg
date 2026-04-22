@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="340" height="190" viewBox="0 0 340 190" role="img" aria-label="Closed Issues">
+  <style>
+    .bg { fill: #0d1117; }
+    .border { fill: none; stroke: #30363d; stroke-width: 1; }
+    .title { font: 600 15px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #8957e5; }
+    .big { font: 700 40px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #f0f6fc; }
+    .big-label { font: 500 11px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #8b949e; letter-spacing: 0.5px; }
+    .row-label { font: 500 12px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #8b949e; }
+    .row-val { font: 600 14px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #f0f6fc; }
+    .dot { fill: #8957e5; }
+  </style>
+  <rect class="bg" x="0" y="0" width="340" height="190" rx="8" ry="8"/>
+  <rect class="border" x="0.5" y="0.5" width="339" height="189" rx="8" ry="8"/>
+
+  <circle class="dot" cx="22" cy="28" r="4"/>
+  <text class="title" x="34" y="33">Closed Issues</text>
+
+  <text class="big-label" x="22" y="60">ALL TIME</text>
+  <text class="big" x="22" y="100">150</text>
+
+  <line x1="22" y1="120" x2="318" y2="120" stroke="#30363d" stroke-width="1"/>
+
+  <text class="row-label" x="22" y="145">This month (30d)</text>
+  <text class="row-val" x="318" y="145" text-anchor="end">91</text>
+
+  <text class="row-label" x="22" y="170">This week (7d)</text>
+  <text class="row-val" x="318" y="170" text-anchor="end">12</text>
+</svg>

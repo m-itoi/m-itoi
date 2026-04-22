@@ -1,16 +1,14 @@
-## Hi there 👋
+<!-- stats-autogen -->
+# Hi, I'm m-itoi 👋
 
-<!--
-**m-itoi/m-itoi** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+## Activity Stats
 
-Here are some ideas to get you started:
+<p align="center">
+  <img src="stats/closed-issues.svg" alt="Closed Issues" />
+  <img src="stats/merged-prs.svg" alt="Merged PRs" />
+  <img src="stats/review-submissions.svg" alt="Review Submissions" />
+</p>
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+📈 **[View daily breakdown (interactive chart)](https://m-itoi.github.io/m-itoi/)**
+
+<sub>Stats are regenerated daily. Numbers reflect one work organization.</sub>
