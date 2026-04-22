@@ -4,9 +4,7 @@
 ## Activity Stats
 
 <p align="center">
-  <img src="stats/closed-issues.svg" alt="Closed Issues" />
-  <img src="stats/merged-prs.svg" alt="Merged PRs" />
-  <img src="stats/review-submissions.svg" alt="Review Submissions" />
+  <img src="stats/summary.svg" alt="Stats summary" />
 </p>
 
 <p align="center">
