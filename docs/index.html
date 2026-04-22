@@ -37,11 +37,13 @@
     background: var(--panel);
     border: 1px solid var(--border);
     border-radius: 8px;
-    padding: 14px 18px;
+    padding: 18px 20px;
   }
-  .card .title { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
-  .card .total { font-size: 30px; font-weight: 700; }
-  .card .sub { color: var(--muted); font-size: 12px; margin-top: 6px; }
+  .card .title { font-size: 13px; font-weight: 600; margin-bottom: 4px; letter-spacing: 0.3px; }
+  .card .week-label { font-size: 10px; font-weight: 600; color: var(--muted); letter-spacing: 1px; margin-top: 10px; }
+  .card .week-val { font-size: 54px; font-weight: 700; line-height: 1.05; margin-top: 2px; }
+  .card .sub-row { display: flex; gap: 18px; margin-top: 12px; color: var(--muted); font-size: 12px; }
+  .card .sub-row strong { color: var(--fg); font-weight: 600; font-size: 13px; }
   .card.c1 .title { color: var(--accent-1); }
   .card.c2 .title { color: var(--accent-2); }
   .card.c3 .title { color: var(--accent-3); }
@@ -54,7 +56,7 @@
   }
   .chart-title { font-size: 14px; font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between; }
   .chart-title .legend { color: var(--muted); font-size: 11px; font-weight: 400; }
-  .chart-wrap { position: relative; height: 220px; }
+  .chart-wrap { position: relative; height: 260px; }
   .controls { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
   .btn {
     background: var(--panel);
@@ -79,10 +81,10 @@
 <div class="cards" id="cards"></div>
 
 <div class="controls">
-  <button class="btn" data-range="30">Last 30 days</button>
+  <button class="btn active" data-range="30">Last 30 days</button>
   <button class="btn" data-range="90">Last 90 days</button>
   <button class="btn" data-range="365">Last 1 year</button>
-  <button class="btn active" data-range="all">All time</button>
+  <button class="btn" data-range="all">All time</button>
 </div>
 
 <div class="chart-section">
@@ -132,8 +134,12 @@
     card.className = 'card c' + (i + 1);
     card.innerHTML =
       '<div class="title">' + m.label + '</div>' +
-      '<div class="total">' + m.total.toLocaleString() + '</div>' +
-      '<div class="sub">30d: ' + m.month + ' · 7d: ' + m.week + '</div>';
+      '<div class="week-label">LAST 7 DAYS</div>' +
+      '<div class="week-val">' + m.week.toLocaleString() + '</div>' +
+      '<div class="sub-row">' +
+      '  <div>30d <strong>' + m.month.toLocaleString() + '</strong></div>' +
+      '  <div>all time <strong>' + m.total.toLocaleString() + '</strong></div>' +
+      '</div>';
     cardsEl.appendChild(card);
   });
 
@@ -141,22 +147,36 @@
     document.getElementById('title-' + (i + 1)).textContent = data.metrics[key].label + ' (daily)';
   });
 
+  function hexToRgba(hex, alpha) {
+    const n = parseInt(hex.slice(1), 16);
+    const r = (n >> 16) & 255;
+    const g = (n >> 8) & 255;
+    const b = n & 255;
+    return 'rgba(' + r + ',' + g + ',' + b + ',' + alpha + ')';
+  }
+
   const charts = [];
   metricKeys.forEach((key, i) => {
     const ctx = document.getElementById('chart' + (i + 1)).getContext('2d');
     const series = data.metrics[key].series;
     const points = series.map(p => ({ x: p.date, y: p.value }));
+    const color = accents[i];
     const chart = new Chart(ctx, {
-      type: 'bar',
+      type: 'line',
       data: {
         datasets: [{
           label: data.metrics[key].label,
           data: points,
-          backgroundColor: accents[i],
-          borderColor: accents[i],
-          borderWidth: 0,
-          barPercentage: 1.0,
-          categoryPercentage: 1.0,
+          borderColor: color,
+          backgroundColor: hexToRgba(color, 0.25),
+          pointBackgroundColor: color,
+          pointBorderColor: '#0d1117',
+          pointBorderWidth: 1,
+          pointRadius: 3,
+          pointHoverRadius: 5,
+          borderWidth: 2,
+          tension: 0.25,
+          fill: true,
         }]
       },
       options: {
@@ -166,13 +186,13 @@
         scales: {
           x: {
             type: 'time',
-            time: { unit: 'month', tooltipFormat: 'yyyy-MM-dd' },
+            time: { unit: 'day', tooltipFormat: 'yyyy-MM-dd', displayFormats: { day: 'MMM d' } },
             grid: { color: '#21262d' },
-            ticks: { color: '#8b949e' },
+            ticks: { color: '#8b949e', maxRotation: 0, autoSkip: true, maxTicksLimit: 10 },
           },
           y: {
             beginAtZero: true,
-            grid: { color: '#21262d' },
+            grid: { color: '#21262d', drawBorder: false },
             ticks: { color: '#8b949e', precision: 0 },
           }
         },
@@ -212,6 +232,8 @@
       applyRange(btn.dataset.range === 'all' ? 'all' : parseInt(btn.dataset.range, 10));
     });
   });
+
+  applyRange(30);
 })();
 </script>
 
