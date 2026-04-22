@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="880" height="280" viewBox="0 0 880 280" role="img" aria-label="Review Submissions activity last 30 days">
   <defs>
-    <linearGradient id="grad-glep1a" x1="0" x2="0" y1="0" y2="1">
+    <linearGradient id="grad-nle9ou" x1="0" x2="0" y1="0" y2="1">
       <stop offset="0%" stop-color="#2ea043" stop-opacity="0.45"/>
       <stop offset="100%" stop-color="#2ea043" stop-opacity="0.02"/>
     </linearGradient>
@@ -41,8 +41,8 @@
   <text class="tick" x="44" y="60.00" text-anchor="end">10</text>
   <line class="axis-line" x1="54" x2="54" y1="56" y2="240"/>
   <line class="axis-line" x1="54" x2="850" y1="240" y2="240"/>
-  <path d="M54.00,203.20 L81.45,148.00 L108.90,221.60 L136.34,184.80 L163.79,240.00 L191.24,240.00 L218.69,166.40 L246.14,221.60 L273.59,221.60 L301.03,203.20 L328.48,203.20 L355.93,240.00 L383.38,203.20 L410.83,203.20 L438.28,184.80 L465.72,166.40 L493.17,240.00 L520.62,240.00 L548.07,240.00 L575.52,240.00 L602.97,203.20 L630.41,240.00 L657.86,240.00 L685.31,240.00 L712.76,166.40 L740.21,240.00 L767.66,240.00 L795.10,74.40 L822.55,166.40 L850.00,184.80 L850.00,240.00 L54.00,240.00 Z" fill="url(#grad-glep1a)"/>
-  <path class="line" d="M54.00,203.20 L81.45,148.00 L108.90,221.60 L136.34,184.80 L163.79,240.00 L191.24,240.00 L218.69,166.40 L246.14,221.60 L273.59,221.60 L301.03,203.20 L328.48,203.20 L355.93,240.00 L383.38,203.20 L410.83,203.20 L438.28,184.80 L465.72,166.40 L493.17,240.00 L520.62,240.00 L548.07,240.00 L575.52,240.00 L602.97,203.20 L630.41,240.00 L657.86,240.00 L685.31,240.00 L712.76,166.40 L740.21,240.00 L767.66,240.00 L795.10,74.40 L822.55,166.40 L850.00,184.80"/>
+  <path d="M54.00,203.20 L81.45,148.00 L108.90,221.60 L136.34,184.80 L163.79,240.00 L191.24,240.00 L218.69,166.40 L246.14,221.60 L273.59,221.60 L301.03,203.20 L328.48,203.20 L355.93,240.00 L383.38,203.20 L410.83,203.20 L438.28,184.80 L465.72,166.40 L493.17,240.00 L520.62,240.00 L548.07,240.00 L575.52,240.00 L602.97,203.20 L630.41,240.00 L657.86,240.00 L685.31,240.00 L712.76,166.40 L740.21,240.00 L767.66,240.00 L795.10,74.40 L822.55,166.40 L850.00,166.40 L850.00,240.00 L54.00,240.00 Z" fill="url(#grad-nle9ou)"/>
+  <path class="line" d="M54.00,203.20 L81.45,148.00 L108.90,221.60 L136.34,184.80 L163.79,240.00 L191.24,240.00 L218.69,166.40 L246.14,221.60 L273.59,221.60 L301.03,203.20 L328.48,203.20 L355.93,240.00 L383.38,203.20 L410.83,203.20 L438.28,184.80 L465.72,166.40 L493.17,240.00 L520.62,240.00 L548.07,240.00 L575.52,240.00 L602.97,203.20 L630.41,240.00 L657.86,240.00 L685.31,240.00 L712.76,166.40 L740.21,240.00 L767.66,240.00 L795.10,74.40 L822.55,166.40 L850.00,166.40"/>
   <circle class="point" cx="54.00" cy="203.20" r="3.5"><title>2026-03-24: 2</title></circle>
   <circle class="point-core" cx="54.00" cy="203.20" r="1.5"/>
   <circle class="point" cx="81.45" cy="148.00" r="3.5"><title>2026-03-25: 5</title></circle>
@@ -101,8 +101,8 @@
   <circle class="point-core" cx="795.10" cy="74.40" r="1.5"/>
   <circle class="point" cx="822.55" cy="166.40" r="3.5"><title>2026-04-21: 4</title></circle>
   <circle class="point-core" cx="822.55" cy="166.40" r="1.5"/>
-  <circle class="point" cx="850.00" cy="184.80" r="3.5"><title>2026-04-22: 3</title></circle>
-  <circle class="point-core" cx="850.00" cy="184.80" r="1.5"/>
+  <circle class="point" cx="850.00" cy="166.40" r="3.5"><title>2026-04-22: 4</title></circle>
+  <circle class="point-core" cx="850.00" cy="166.40" r="1.5"/>
   <text class="tick" x="54.00" y="258.00" text-anchor="middle">24</text>
   <text class="tick" x="81.45" y="258.00" text-anchor="middle">25</text>
   <text class="tick" x="108.90" y="258.00" text-anchor="middle">26</text>
@@ -137,6 +137,6 @@
   <text class="axis-label" x="440.00" y="270" text-anchor="middle">Days</text>
   <rect class="card-bg" x="64" y="64" width="188" height="74" rx="6" ry="6"/>
   <text class="card-label" x="78" y="84">LAST 7 DAYS</text>
-  <text class="card-val" x="78" y="114">20</text>
-  <text class="card-sub" x="78" y="130">30d <tspan class="card-sub-val">55</tspan>  ·  all <tspan class="card-sub-val">785</tspan></text>
+  <text class="card-val" x="78" y="114">21</text>
+  <text class="card-sub" x="78" y="130">30d <tspan class="card-sub-val">55</tspan>  ·  all <tspan class="card-sub-val">786</tspan></text>
 </svg>
