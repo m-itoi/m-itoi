@@ -10,15 +10,6 @@
 ## Activity Stats
 
 <p align="center">
-  <a href="https://m-itoi.github.io/m-itoi/"><img src="stats/graph-closed-issues.svg" alt="Closed Issues Activity Graph" /></a>
-</p>
-<p align="center">
-  <a href="https://m-itoi.github.io/m-itoi/"><img src="stats/graph-merged-prs.svg" alt="Merged PRs Activity Graph" /></a>
-</p>
-<p align="center">
-  <a href="https://m-itoi.github.io/m-itoi/"><img src="stats/graph-review-submissions.svg" alt="Review Submissions Activity Graph" /></a>
-</p>
-<p align="center">
   <a href="https://m-itoi.github.io/m-itoi/"><img src="stats/graph-combined.svg" alt="Combined Activity Graph" /></a>
 </p>
 
