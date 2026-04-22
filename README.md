@@ -4,17 +4,13 @@
 ## Activity Stats
 
 <p align="center">
-  <img src="stats/summary.svg" alt="Stats summary" />
-</p>
-
-<p align="center">
-  <a href="https://m-itoi.github.io/m-itoi/"><img src="stats/chart-closed-issues.svg" alt="Closed Issues daily" /></a>
+  <a href="https://m-itoi.github.io/m-itoi/"><img src="stats/panel-closed-issues.svg" alt="Closed Issues" /></a>
 </p>
 <p align="center">
-  <a href="https://m-itoi.github.io/m-itoi/"><img src="stats/chart-merged-prs.svg" alt="Merged PRs daily" /></a>
+  <a href="https://m-itoi.github.io/m-itoi/"><img src="stats/panel-merged-prs.svg" alt="Merged PRs" /></a>
 </p>
 <p align="center">
-  <a href="https://m-itoi.github.io/m-itoi/"><img src="stats/chart-review-submissions.svg" alt="Review Submissions daily" /></a>
+  <a href="https://m-itoi.github.io/m-itoi/"><img src="stats/panel-review-submissions.svg" alt="Review Submissions" /></a>
 </p>
 
 📈 **[Interactive chart (zoom · pan · range filter)](https://m-itoi.github.io/m-itoi/)**

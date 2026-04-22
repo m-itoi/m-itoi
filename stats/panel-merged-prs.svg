@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="180" viewBox="0 0 880 180" role="img" aria-label="Merged PRs stats and last 14 days">
+  <style>
+    .bg { fill: #161b22; }
+    .border { fill: none; stroke: #30363d; stroke-width: 1; }
+    .divider { stroke: #30363d; stroke-width: 1; }
+    .title { font: 600 15px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #1f6feb; }
+    .big { font: 700 52px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #f0f6fc; }
+    .big-label { font: 600 10px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #8b949e; letter-spacing: 0.8px; }
+    .row-label { font: 500 11px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #8b949e; }
+    .row-val { font: 600 13px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #f0f6fc; }
+    .chart-title { font: 500 11px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #8b949e; letter-spacing: 0.4px; }
+    .tick { font: 500 10px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #8b949e; }
+    .grid { stroke: #21262d; stroke-width: 1; }
+    .axis-line { stroke: #30363d; stroke-width: 1; }
+  </style>
+  <rect class="bg" x="0" y="0" width="880" height="180" rx="8" ry="8"/>
+  <rect class="border" x="0.5" y="0.5" width="879" height="179" rx="8" ry="8"/>
+
+  <circle cx="22" cy="30" r="4" fill="#1f6feb"/>
+  <text class="title" x="34" y="35">Merged PRs</text>
+
+  <text class="big-label" x="22" y="60">ALL TIME</text>
+  <text class="big" x="22" y="110">342</text>
+
+  <line x1="22" y1="128" x2="228" y2="128" stroke="#30363d" stroke-width="1"/>
+  <text class="row-label" x="22" y="148">This month (30d)</text>
+  <text class="row-val" x="228" y="148" text-anchor="end">61</text>
+  <text class="row-label" x="22" y="168">This week (7d)</text>
+  <text class="row-val" x="228" y="168" text-anchor="end">9</text>
+
+  <line class="divider" x1="240" x2="240" y1="18" y2="162"/>
+
+  <text class="chart-title" x="252" y="30">LAST 14 DAYS</text>
+  <line class="grid" x1="288" x2="862" y1="148.00" y2="148.00"/>
+  <text class="tick" x="282" y="151.00" text-anchor="end">0</text>
+  <line class="grid" x1="288" x2="862" y1="121.50" y2="121.50"/>
+  <text class="tick" x="282" y="124.50" text-anchor="end">3</text>
+  <line class="grid" x1="288" x2="862" y1="95.00" y2="95.00"/>
+  <text class="tick" x="282" y="98.00" text-anchor="end">5</text>
+  <line class="grid" x1="288" x2="862" y1="68.50" y2="68.50"/>
+  <text class="tick" x="282" y="71.50" text-anchor="end">8</text>
+  <line class="grid" x1="288" x2="862" y1="42.00" y2="42.00"/>
+  <text class="tick" x="282" y="45.00" text-anchor="end">10</text>
+  <line class="axis-line" x1="288" x2="288" y1="42" y2="148"/>
+  <line class="axis-line" x1="288" x2="862" y1="148" y2="148"/>
+  <rect x="292.10" y="84.40" width="32.80" height="63.60" fill="#1f6feb"><title>2026-04-09: 6</title></rect>
+  <rect x="333.10" y="137.40" width="32.80" height="10.60" fill="#1f6feb"><title>2026-04-10: 1</title></rect>
+  <rect x="456.10" y="126.80" width="32.80" height="21.20" fill="#1f6feb"><title>2026-04-13: 2</title></rect>
+  <rect x="620.10" y="137.40" width="32.80" height="10.60" fill="#1f6feb"><title>2026-04-17: 1</title></rect>
+  <rect x="743.10" y="116.20" width="32.80" height="31.80" fill="#1f6feb"><title>2026-04-20: 3</title></rect>
+  <rect x="784.10" y="95.00" width="32.80" height="53.00" fill="#1f6feb"><title>2026-04-21: 5</title></rect>
+  <text class="tick" x="308.50" y="164.00" text-anchor="middle">Apr 9</text>
+  <text class="tick" x="595.50" y="164.00" text-anchor="middle">Apr 16</text>
+  <text class="tick" x="841.50" y="164.00" text-anchor="middle">today</text>
+</svg>
