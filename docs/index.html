@@ -57,6 +57,22 @@
   .chart-title { font-size: 14px; font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between; }
   .chart-title .legend { color: var(--muted); font-size: 11px; font-weight: 400; }
   .chart-wrap { position: relative; height: 260px; }
+  .overlay-card {
+    position: absolute;
+    top: 12px;
+    left: 56px;
+    background: #0d1117;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 14px;
+    z-index: 10;
+    pointer-events: none;
+    min-width: 170px;
+  }
+  .overlay-card .ol-label { font-size: 9px; color: var(--muted); letter-spacing: 1px; font-weight: 600; }
+  .overlay-card .ol-val { font-size: 24px; font-weight: 700; margin-top: 2px; line-height: 1.1; }
+  .overlay-card .ol-sub { font-size: 10px; color: var(--muted); margin-top: 6px; }
+  .overlay-card .ol-sub strong { color: var(--fg); font-weight: 600; font-size: 11px; }
   .controls { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
   .btn {
     background: var(--panel);
@@ -92,7 +108,10 @@
     <span id="title-1">Closed Issues (daily)</span>
     <span class="legend">drag to pan · wheel to zoom</span>
   </div>
-  <div class="chart-wrap"><canvas id="chart1"></canvas></div>
+  <div class="chart-wrap">
+    <div class="overlay-card" id="overlay-1"></div>
+    <canvas id="chart1"></canvas>
+  </div>
 </div>
 
 <div class="chart-section">
@@ -100,7 +119,10 @@
     <span id="title-2">Merged PRs (daily)</span>
     <span class="legend">drag to pan · wheel to zoom</span>
   </div>
-  <div class="chart-wrap"><canvas id="chart2"></canvas></div>
+  <div class="chart-wrap">
+    <div class="overlay-card" id="overlay-2"></div>
+    <canvas id="chart2"></canvas>
+  </div>
 </div>
 
 <div class="chart-section">
@@ -108,7 +130,10 @@
     <span id="title-3">Review Submissions (daily)</span>
     <span class="legend">drag to pan · wheel to zoom</span>
   </div>
-  <div class="chart-wrap"><canvas id="chart3"></canvas></div>
+  <div class="chart-wrap">
+    <div class="overlay-card" id="overlay-3"></div>
+    <canvas id="chart3"></canvas>
+  </div>
 </div>
 
 <div class="footer">Regenerated daily by private workflow.</div>
@@ -145,6 +170,11 @@
 
   metricKeys.forEach((key, i) => {
     document.getElementById('title-' + (i + 1)).textContent = data.metrics[key].label + ' (daily)';
+    const m = data.metrics[key];
+    document.getElementById('overlay-' + (i + 1)).innerHTML =
+      '<div class="ol-label">LAST 7 DAYS</div>' +
+      '<div class="ol-val">' + m.week.toLocaleString() + '</div>' +
+      '<div class="ol-sub">30d <strong>' + m.month.toLocaleString() + '</strong> · all <strong>' + m.total.toLocaleString() + '</strong></div>';
   });
 
   function hexToRgba(hex, alpha) {
