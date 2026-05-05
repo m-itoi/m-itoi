@@ -13,7 +13,7 @@
   <rect class="border" x="0.5" y="0.5" width="559" height="139" rx="8" ry="8"/>
 
   <text class="header-label" x="18" y="26">YESTERDAY</text>
-  <text class="header-date" x="542" y="26" text-anchor="end">2026-05-04</text>
+  <text class="header-date" x="542" y="26" text-anchor="end">2026-05-05</text>
   <line class="divider" x1="14" x2="546" y1="38" y2="38"/>
   <circle cx="35.33" cy="68" r="3.5" fill="#8957e5"/>
   <text class="metric-label" x="43.33" y="72" fill="#8957e5">Closed Issues</text>
